@@ -89,15 +89,19 @@ class JsonArrayFrame(tk.Frame):
     def __init__(self, root, json_data):
         tk.Frame.__init__(self, root)
         self.mychildren = list()
+        self.toggle = False
         start = tk.Label(self, text="[", bg="#303030", fg="#FFFFFF")
-        start.pack(side=LEFT)
+        start.pack(side=LEFT, anchor="nw")
+        button = tk.Button(self, text="t", command=self.button_toggle_click)
+        button.pack(side=LEFT)
+
         isFirst = True
         for value in json_data:
-            if isFirst:
-                isFirst = False
-            else:
-                label = tk.Label(self, text=",", bg="#303030", fg="#FFFFFF")
-                label.pack(side=LEFT)
+            # if isFirst:
+            #     isFirst = False
+            # else:
+            #     label = tk.Label(self, text=",", bg="#303030", fg="#FFFFFF")
+            #     label.pack(side=LEFT)
             frame = JsonItemFrame(self, value)
             self.mychildren.append(frame)
             frame.pack(side=LEFT)
@@ -107,7 +111,25 @@ class JsonArrayFrame(tk.Frame):
             #     frame.pack(side=TOP)
 
         endlabel = tk.Label(self, text="]", bg="#303030", fg="#FFFFFF")
-        endlabel.pack(side=LEFT)
+        endlabel.pack(side=RIGHT)
+
+        button = tk.Button(self, text="+", command=self.button_add_click)
+        button.pack(side=RIGHT)
+
+    def button_add_click(self):
+        # label = tk.Label(self, text=",", bg="#303030", fg="#FFFFFF")
+        # label.pack(side=(TOP if self.toggle else LEFT))
+        frame = JsonItemFrame(self, 0)
+        self.mychildren.append(frame)
+        frame.pack(side=(TOP if self.toggle else LEFT))
+        print("button presses")
+        print(self.getDump())
+    
+    def button_toggle_click(self):
+        self.toggle = not self.toggle
+        for child in self.mychildren:
+            child.pack(side=(TOP if self.toggle else LEFT))
+        
 
     def getDump(self):
         parts = list()

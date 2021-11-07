@@ -12,17 +12,22 @@ if len(sys.argv) != 2:
 
 root = tk.Tk()
 filename = sys.argv[1]
-root.title(filename)
 
 with open(filename) as f:
     data = json.load(f)
+
+# change file name to don't delete anyones data 
+#  somefile.json -> somefile-human.json
+parts = filename.split('.')
+filename =str.join('.',parts[0:-1]) + "-human." + parts[-1]
+root.title(filename)
 
 json_frame = JsonFrame(root, data)
 json_frame.grid(row=0)
 # json_frame.pack()
 
 
-def button_click():
+def button_save_click():
     dump = json_frame.getDump()
     print(dump)
     with open(filename,"w") as f:
@@ -30,7 +35,7 @@ def button_click():
       f.write(jsondump)
 
 
-button = tk.Button(root, text="save", command=button_click)
+button = tk.Button(root, text="save", command=button_save_click)
 # button.pack()
 button.grid(row=1)
 
