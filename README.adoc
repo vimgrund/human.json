@@ -1,0 +1,12 @@
+= human.json
+
+Ein kleines Tool zum Bearbeiten von .json Files, ohne das Schema der Json Struktur zu verändern
+
+== run
+
+```
+python src/app something.json
+```
+oder per drag and drop
+
+image::media/run.bat.gif[]
