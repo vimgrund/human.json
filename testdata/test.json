@@ -1,0 +1,26 @@
+{
+    "something": "somethingelse",
+    "anotherthing": null,
+    "object": {
+        "farbe": "gelb",
+        "code": [
+            42,
+            15
+        ],
+        "test": {
+            "blub": "blubblub"
+        },
+        "float": 123.23
+    },
+    "objectArray": [
+        {
+            "name": "john",
+            "id": 1
+        },
+        {
+            "name": "johnson",
+            "id": 2,
+            "special": "none"
+        }
+    ]
+}

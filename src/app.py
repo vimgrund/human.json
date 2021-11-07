@@ -12,18 +12,25 @@ if len(sys.argv) != 2:
 
 root = tk.Tk()
 filename = sys.argv[1]
+root.title(filename)
+
 with open(filename) as f:
-  data = json.load(f)
+    data = json.load(f)
 
 json_frame = JsonFrame(root, data)
 json_frame.grid(row=0)
 # json_frame.pack()
 
+
 def button_click():
-    print(json_frame.getDump())
+    dump = json_frame.getDump()
+    print(dump)
+    with open(filename,"w") as f:
+      jsondump = json.dumps(json.loads(dump),indent=4)
+      f.write(jsondump)
 
 
-button = tk.Button(root, text="clickme", command=button_click)
+button = tk.Button(root, text="save", command=button_click)
 # button.pack()
 button.grid(row=1)
 
