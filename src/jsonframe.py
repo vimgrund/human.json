@@ -1,6 +1,7 @@
 import json
 import tkinter as tk
 from tkinter.constants import BOTTOM, LEFT, RIGHT, TOP, W
+from createtooltip import CreateToolTip
 
 
 class JsonFrame(tk.Frame):
@@ -93,7 +94,8 @@ class JsonArrayFrame(tk.Frame):
         start = tk.Label(self, text="[", bg="#303030", fg="#FFFFFF")
         start.pack(side=LEFT, anchor="nw")
         button = tk.Button(self, text="t", command=self.button_toggle_click)
-        button.pack(side=LEFT)
+        button.pack(side=LEFT, anchor="nw")
+        CreateToolTip(button, "Toggle view of items\n(vertical/horizontal)")
 
         isFirst = True
         for value in json_data:
@@ -115,6 +117,7 @@ class JsonArrayFrame(tk.Frame):
 
         button = tk.Button(self, text="+", command=self.button_add_click)
         button.pack(side=RIGHT)
+        CreateToolTip(button, text="add item")
 
     def button_add_click(self):
         # label = tk.Label(self, text=",", bg="#303030", fg="#FFFFFF")

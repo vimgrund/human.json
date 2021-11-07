@@ -28,6 +28,7 @@ json_frame.grid(row=0)
 
 
 def button_save_click():
+    "stores json dump to disk"
     dump = json_frame.getDump()
     print(dump)
     with open(filename,"w") as f:
