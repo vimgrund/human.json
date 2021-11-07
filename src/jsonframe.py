@@ -65,8 +65,19 @@ class JsonItemFrame(tk.Frame):
             self.myValue = frame
         else:
             frame = tk.Label(self, text="null", bg="#303030", fg="#4444FF")
-            self.myValue = "null" 
+            self.myValue = frame
+            self.button = tk.Button(self, text="+", command=self.button_add_int_click)
+            self.button.pack(side=RIGHT)
+            CreateToolTip(self.button, text="add int")
+
         frame.pack(side=LEFT)
+
+    def button_add_int_click(self):
+        self.button.destroy()
+        self.myValue.destroy()
+        self.myValue = JsonItemFrame(self, 0)
+        self.myValue.pack(side=LEFT)
+        print(self.getDump())
 
     def getDump(self):
         result = "ERROR"
@@ -79,6 +90,7 @@ class JsonItemFrame(tk.Frame):
             except:
                 result = "null"
         elif type(self.myValue) is JsonFrame \
+                or type(self.myValue) is JsonItemFrame \
                 or type(self.myValue) is JsonArrayFrame:
             result = self.myValue.getDump()
         elif type(self.myValue) is str:
@@ -113,10 +125,10 @@ class JsonArrayFrame(tk.Frame):
             #     frame.pack(side=TOP)
 
         endlabel = tk.Label(self, text="]", bg="#303030", fg="#FFFFFF")
-        endlabel.pack(side=RIGHT)
+        endlabel.pack(side=RIGHT, anchor="sw")
 
         button = tk.Button(self, text="+", command=self.button_add_click)
-        button.pack(side=RIGHT)
+        button.pack(side=RIGHT, anchor="sw")
         CreateToolTip(button, text="add item")
 
     def button_add_click(self):
