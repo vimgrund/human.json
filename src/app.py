@@ -21,6 +21,7 @@ with open(filename) as f:
 parts = filename.split('.')
 filename =str.join('.',parts[0:-1]) + "-human." + parts[-1]
 root.title(filename)
+root.iconbitmap('media/app-json.ico')
 
 json_frame = JsonFrame(root, data)
 json_frame.grid(row=0)
